@@ -1,5 +1,5 @@
 node_modules/
-/*.bat
-/*.gitignore
-/*.log
+*.bat
+*.gitignore
+*.log
 /.idea
