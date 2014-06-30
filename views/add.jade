@@ -14,8 +14,8 @@ block content
             div.col-sm-6
                 select.form-control(name="category")
                     each item in data
-                        option(value="#{item.title}") #{item.title} 
-                        input(type="hidden",value="#{item.id}")
+                        option(value="#{item.id}") #{item.title}
+        input#cateID(type="hidden")
         .form-group
             label.col-sm-2.control-label 描述
             div.col-sm-6

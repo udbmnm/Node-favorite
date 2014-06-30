@@ -5,6 +5,7 @@ var WebSchema = new mongoose.Schema({
 	url : String,
 	desc : String,
     category : String,
+    cate_id : ObjectId,
 	time : Date
 })
 

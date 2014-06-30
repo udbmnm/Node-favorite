@@ -51,7 +51,8 @@ module.exports = function(app){
         entity.save(function(err,re){
             if (err) return console.log(err)
             console.log(re,'数据保存成功');
-            res.redirect('/')
+           // res.redirect('/')
+            res.send({status:1,msg:'保存成功'})
         })
 
     })
@@ -65,7 +66,8 @@ module.exports = function(app){
         entity.save(function(err,re){
         if (err) return console.log(err)
             console.log(re,'保存分类成功');
-            res.redirect('/addCate')
+            //res.redirect('/addCate')
+            res.send({status:1,msg:'保存成功'})
         })
 
     })
