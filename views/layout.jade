@@ -1,0 +1,22 @@
+doctype html
+html
+	head
+		title #{title}
+		link(href="/css/bootstrap.min.css",rel="stylesheet" type="text/css")
+	body
+		header.navbar.navbar-default
+			.container
+				.navbar-header
+					a.navbar-brand(href="/") 收藏夹
+				.navbar-collapse.collapse
+					ul.nav.navbar-nav
+						li  
+							a(href="/add") 添加新网址
+						li
+							a(href="/addCate") 网址分类
+					form.navbar-form.navbar-right
+						.form-group
+							input.form-control(type="text",placeholder="关键词搜索网址")
+							button.btn.btn-default 搜一下
+		.container
+			block content					

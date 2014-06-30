@@ -1,0 +1,25 @@
+extend layout
+block content
+    form.form-horizontal(method="post",action="/add")
+        .form-group
+            label.col-sm-2.control-label 网站名称
+            div.col-sm-6
+                input.form-control(type="text",placeholder="网站名称",name="title")
+        .form-group
+            label.col-sm-2.control-label 网站地址
+            div.col-sm-6
+                input.form-control(type="text",placeholder="网站地址",name="url")
+        .form-group
+            label.col-sm-2.control-label 网站分类
+            div.col-sm-6
+                select.form-control(name="category")
+                    each item in data
+                        option(value="#{item.title}") #{item.title} 
+                        input(type="hidden",value="#{item.id}")
+        .form-group
+            label.col-sm-2.control-label 描述
+            div.col-sm-6
+                textarea.form-control(placeholder="描述",name="desc")
+        .form-group
+            div.col-sm-offset-2.col-sm-10
+                button.btn.btn-success 添加新网址

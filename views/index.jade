@@ -1,0 +1,11 @@
+extends layout
+block content
+    .row
+        .col-md-6
+            .panel.panel-default
+                .panel-heading 其他分类
+                ul.list-group
+                    each item in data
+                        li.list-group-item
+                            a(href="#{item.url}") #{item.title}
+                            a.label.label-warning.pull-right(href="/cate/#{item.id}") #{item.category}

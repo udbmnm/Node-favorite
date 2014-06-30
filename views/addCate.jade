@@ -1,0 +1,16 @@
+extend layout
+block content
+	ul.list-group
+		each  item in data
+			li.list-group-item #{item.title}
+	form.form-horizontal(method="post",action="/addCate")
+		.form-group
+			label.col-sm-2.control-label 分类名
+			div.col-sm-6
+				input.form-control(type="text",placeholder="分类名",name="category")
+		.form-group
+			div.col-sm-offset-2.col-sm-10
+				button.btn.btn-success 添加新分类
+
+
+
