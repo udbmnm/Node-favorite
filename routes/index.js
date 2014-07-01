@@ -37,7 +37,6 @@ module.exports = function(app){
 
     app.get('/cate/:id',function(req,res){
         var id = req.params.id
-        console.log('id:'+id)
         WebModel.find({cate_id:id}).sort('time').exec(function(err,doc){
             if (err) return console.log(err)
             if(doc === null) return res.send('没有查询到数据')
@@ -57,7 +56,6 @@ module.exports = function(app){
             desc :req.body.desc,
             time : Date.now()
         }
-        console.log(data)
         var entity = new WebModel(data)
         entity.save(function(err,re){
             if (err){

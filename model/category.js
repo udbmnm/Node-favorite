@@ -1,8 +1,8 @@
 var mongoose = require('mongoose')
 
 var CateSchema = new mongoose.Schema({
-    title : String,
-    time : Date
+    title : {type : String, require :true},
+    time : {type: Date, default: Date.now()}
 })
 
 CateSchema.statics.findCate = function (id,cb) {
