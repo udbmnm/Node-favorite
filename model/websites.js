@@ -7,6 +7,7 @@ var WebSchema = new mongoose.Schema({
     cate_name : {type : String, require  :true},
     cate_id : {type: ObjectId, ref: 'category', require :true},
 	time : {type: Date, default: Date.now()}
+
 })
 
 

@@ -3,6 +3,7 @@ var mongoose = require('mongoose')
 var CateSchema = new mongoose.Schema({
     title : {type : String, require :true},
     time : {type: Date, default: Date.now()}
+    
 })
 
 CateSchema.statics.findCate = function (id,cb) {
