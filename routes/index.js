@@ -5,14 +5,11 @@ module.exports = function(app){
 	app.get('/',function(req,res){
 		WebModel.find({}).sort('time').exec(function(err,doc){
 			if (err) return console.log(err)
-//            CateMode.findCate(doc.id, function (d) {
-//                doc.category = d
-//                console.log(doc)
                 res.render('index',{
                     title : '首页',
                     data : doc
                 })
-           // })
+
 
 		})
 	})
@@ -38,21 +35,36 @@ module.exports = function(app){
 
     })
 
+    app.get('/cate/:id',function(req,res){
+        var id = req.params.id
+        console.log('id:'+id)
+        WebModel.find({cate_id:id}).sort('time').exec(function(err,doc){
+            if (err) return console.log(err)
+            if(doc === null) return res.send('没有查询到数据')
+            res.render('category',{
+                title : '分类网址列表',
+                data : doc
+            })
+        })
+    })
 
     app.post('/add',function(req,res){
         var data = {
             title : req.body.title,
             url : req.body.url,
-            category : req.body.category,
+            cate_name : req.body.cate_name,
+            cate_id : req.body.cate_id,
             desc :req.body.desc,
             time : Date.now()
         }
+        console.log(data)
         var entity = new WebModel(data)
         entity.save(function(err,re){
-            if (err) return console.log(err)
-            console.log(re,'数据保存成功');
-           // res.redirect('/')
-            res.send({status:1,msg:'保存成功'})
+            if (err){
+                res.send({status:0,msg:'添加失败'})
+                return console.log(err)
+            }
+            res.send({status:1,msg:'添加成功'})
         })
 
     })

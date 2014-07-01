@@ -4,8 +4,8 @@ var WebSchema = new mongoose.Schema({
 	title : String,
 	url : String,
 	desc : String,
-    category : String,
-    cate_id : ObjectId,
+    cate_name : String,
+    cate_id : String,
 	time : Date
 })
 

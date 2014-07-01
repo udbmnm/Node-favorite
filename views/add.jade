@@ -4,22 +4,45 @@ block content
         .form-group
             label.col-sm-2.control-label 网站名称
             div.col-sm-6
-                input.form-control(type="text",placeholder="网站名称",name="title")
+                input#title.form-control(type="text",placeholder="网站名称",name="title")
         .form-group
             label.col-sm-2.control-label 网站地址
             div.col-sm-6
-                input.form-control(type="text",placeholder="网站地址",name="url")
+                input#url.form-control(type="text",placeholder="网站地址",name="url")
         .form-group
             label.col-sm-2.control-label 网站分类
             div.col-sm-6
-                select.form-control(name="category")
+                select#cateID.form-control(name="cateID")
                     each item in data
                         option(value="#{item.id}") #{item.title}
-        input#cateID(type="hidden")
+        input#cateName(type="hidden",name="cateName")
         .form-group
             label.col-sm-2.control-label 描述
             div.col-sm-6
-                textarea.form-control(placeholder="描述",name="desc")
+                textarea#desc.form-control(placeholder="描述",name="desc")
         .form-group
             div.col-sm-offset-2.col-sm-10
-                button.btn.btn-success 添加新网址
+                button#add.btn.btn-success 添加新网址
+block footer
+    script.
+        var $cateName = $('#cateName'),$cateID = $('#cateID')
+        $cateName.val($cateID.children(':selected').text())
+        $cateID.on('change',function(){
+            $cateName.val($(this).children(':selected').text())
+        })
+        $('#add').on('click',function(e){
+            e.preventDefault();
+            var data = {
+                title : $('#title').val(),
+                url : $('#url').val(),
+                cate_name : $cateName.val(),
+                cate_id : $cateID.val(),
+                desc :$('#desc').val()
+            }
+            console.log(data)
+            $.post('/add',data,function(r){
+
+                alert(r);
+            })
+        })
+
