@@ -1,20 +1,28 @@
 var WebModel = require('../model/websites.js')
 var CateMode = require('../model/category.js')
+var ObjectId = require('mongoose').Schema.ObjectId
 module.exports = function(app){
 
 	app.get('/',function(req,res){
-		WebModel.find({}).sort('time').exec(function(err,doc){
-			if (err) return console.log(err)
-                res.render('index',{
-                    title : '首页',
-                    data : doc
+
+
+        WebModel.find({})
+                .sort('time')
+                .exec(function(err,doc){
+                    console.log(doc)
+                    if (err) return console.log(err)
+
+                        res.render('index',{
+                            title : '首页',
+                            data : doc
+                        })
                 })
 
 
-		})
 	})
 	
 	app.get('/add',function(req,res){
+
         CateMode.find({}).exec(function(err,doc) {
             if (err) return console.log(err)
             res.render('add',{
@@ -22,6 +30,7 @@ module.exports = function(app){
                 data : doc
             })
         })
+
 	})
 
     app.get('/addCate',function(req,res){
@@ -58,12 +67,16 @@ module.exports = function(app){
         }
         var entity = new WebModel(data)
         entity.save(function(err,re){
+            console.log(re)
             if (err){
                 res.send({status:0,msg:'添加失败'})
                 return console.log(err)
             }
             res.send({status:1,msg:'添加成功'})
+
         })
+
+
 
     })
 
