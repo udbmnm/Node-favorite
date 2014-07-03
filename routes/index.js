@@ -7,7 +7,10 @@ module.exports = function(app){
 
 
         CateMode.find({})
-                .populate('list')
+                .populate({
+                    path : 'list',
+                    select : 'title url'
+                })
                 .sort('time')
                 .exec(function(err,doc){
                     console.log(doc)
@@ -58,6 +61,7 @@ module.exports = function(app){
     })
 
     app.post('/add',function(req,res){
+
         var data = {
             title : req.body.title,
             url : req.body.url,
@@ -68,30 +72,21 @@ module.exports = function(app){
         }
         var entity = new WebModel(data)
 
-        CateMode.findById(data.cate_id, function (err,mode) {
+        entity.save(function(err,doc){
+            console.log(doc)
             if (err){
+                res.send({status:0,msg:'添加失败'})
                 return console.log(err)
             }
-            entity.save(function(err,re){
-                console.log(re)
-                if (err){
-                    res.send({status:0,msg:'添加失败'})
-                    return console.log(err)
-                }
-                mode.list.push(re)
-                mode.save(function () {
-                    if (err){
-                        res.send({status:0,msg:'添加失败'})
-                        return console.log(err)
-                    }
-                    res.send({status:1,msg:'添加成功'})
-                })
 
+            CateMode.update({_id : data.cate_id},{$push:{list:doc}},function (err) {
+                if (err){
+                    return console.log(err,1111111111)
+                }
+                res.send({status:1,msg:'添加成功'})
             })
 
-
         })
-
     })
 
     app.post('/addCate',function(req,res){
