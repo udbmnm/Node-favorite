@@ -6,7 +6,8 @@ module.exports = function(app){
 	app.get('/',function(req,res){
 
 
-        WebModel.find({})
+        CateMode.find({})
+                .populate('list')
                 .sort('time')
                 .exec(function(err,doc){
                     console.log(doc)
@@ -66,17 +67,30 @@ module.exports = function(app){
             time : Date.now()
         }
         var entity = new WebModel(data)
-        entity.save(function(err,re){
-            console.log(re)
+
+        CateMode.findById(data.cate_id, function (err,mode) {
             if (err){
-                res.send({status:0,msg:'添加失败'})
                 return console.log(err)
             }
-            res.send({status:1,msg:'添加成功'})
+            entity.save(function(err,re){
+                console.log(re)
+                if (err){
+                    res.send({status:0,msg:'添加失败'})
+                    return console.log(err)
+                }
+                mode.list.push(re)
+                mode.save(function () {
+                    if (err){
+                        res.send({status:0,msg:'添加失败'})
+                        return console.log(err)
+                    }
+                    res.send({status:1,msg:'添加成功'})
+                })
+
+            })
+
 
         })
-
-
 
     })
 
