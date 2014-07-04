@@ -87,11 +87,12 @@ module.exports = function(app){
             })
 
         })
+
     })
 
     app.post('/addCate',function(req,res){
         var data = {
-            title : req.body.category,
+            title : req.body.title,
             time : Date.now()
         }
         var entity = new CateMode(data)

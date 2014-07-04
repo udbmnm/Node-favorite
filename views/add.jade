@@ -31,7 +31,7 @@ block footer
             $cateName.val($(this).children(':selected').text())
         })
         $('#add').on('click',function(e){
-            e.preventDefault();
+            e.preventDefault()
             var data = {
                 title : $('#title').val(),
                 url : $('#url').val(),
@@ -42,7 +42,7 @@ block footer
             console.log(data)
             $.post('/add',data,function(r){
 
-                alert(r.msg);
+                alert(r.msg)
             })
         })
 
