@@ -50,14 +50,23 @@ module.exports = function(app){
 
     app.get('/cate/:id',function(req,res){
         var id = req.params.id
-        WebModel.find({cate_id:id}).sort('time').exec(function(err,doc){
-            if (err) return console.log(err)
-            if(doc === null) return res.send('没有查询到数据')
-            res.render('category',{
-                title : '分类网址列表',
-                data : doc
+
+        CateMode.findById(id)
+            .populate({
+                path : 'list',
+                select : 'title url'
             })
-        })
+            .sort('time')
+            .exec(function(err,doc){
+                console.log(doc)
+                if (err) return console.log(err)
+
+                res.render('category',{
+                    title : doc.title,
+                    data : doc
+                })
+            })
+
     })
 
     app.post('/add',function(req,res){

@@ -5,6 +5,8 @@ block content
             .col-md-6
                 .panel.panel-default
                     .panel-heading #{cate.title}
+                      a.pull-right(href="/cate/#{cate.id}") 
+                        i.glyphicon.glyphicon-chevron-right
                     ul.list-group
                         each item in cate.list
                             li.list-group-item
