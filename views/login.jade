@@ -3,16 +3,28 @@
 extend layout
 block content
 	.col-md-6
-		form.form-horizontal
+		form.form-horizontal(method="post",action="/login")
 			.form-group
 				label.col-sm-2.control-label 用户名
 				.col-sm-10
-					input.form-control(type="text",placeholder="用户名")
+					input.form-control(type="text",name="username",placeholder="用户名",required="required")
 			.form-group
 				label.col-sm-2.control-label 密码
 				.col-sm-10
-					input.form-control(type="password",placeholder="密码")
+					input.form-control(type="password",name="password",placeholder="密码",required="required")
 			.form-group
 				div.col-sm-offset-2.col-sm-10
 					button#submit.btn.btn-success.btn-sm 马上登陆
-		
+block footer
+	//- script.
+	//- 	$('#submit').on('click',function(e){
+	//- 		e.preventDefault()
+	//- 		var data = {
+	//- 			title : $('#cate').val()
+	//- 			}
+
+	//- 		$.post('/addCate',data,function(r){
+	//- 			alert(r.msg)
+	//- 		})
+	//- 	})
+

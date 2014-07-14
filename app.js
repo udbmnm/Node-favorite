@@ -7,6 +7,11 @@ var mongoose = require('mongoose')
 mongoose.connect('mongodb://admin:admin@localhost:27017/admin')
 app.set('views','./views')
 app.set('view engine','jade')
+
+app.use(express.cookieParser('session'));
+app.use(express.session({ secret: 'session' }));
+
+
 app.use(express.static('./public'))
 app.use(express.bodyParser({
     uploadDir: __dirname + '/upload',

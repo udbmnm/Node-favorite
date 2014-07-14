@@ -3,15 +3,15 @@
 extend layout
 block content
 	.col-md-6
-		form.form-horizontal
+		form.form-horizontal(method="post",action="/reg")
 			.form-group
 				label.col-sm-2.control-label 用户名
 				.col-sm-10
-					input.form-control(type="text",placeholder="用户名")
+					input.form-control(type="text",name="username",placeholder="用户名",required="required")
 			.form-group
 				label.col-sm-2.control-label 密码
 				.col-sm-10
-					input.form-control(type="password",placeholder="密码")
+					input.form-control(type="password",name="password",placeholder="密码",required="required")
 			.form-group
 				div.col-sm-offset-2.col-sm-10
 					button#submit.btn.btn-success.btn-sm 立刻注册
