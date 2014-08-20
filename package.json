@@ -1,5 +1,5 @@
 {
-  "name": "Test",
+  "name": "package",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -9,6 +9,7 @@
     "express": "3.4.8",
     "jade": "*",
     "stylus": "*",
-    "debug" : "*"
+    "debug" : "*",
+    "mongoose":"3.8.13"
   }
 }
