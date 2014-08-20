@@ -127,24 +127,24 @@ module.exports = function(app){
             username : req.body.username,
             password : req.body.password
         }
-       // console.log(req.session)
+        console.log(req.session)
         UserModel.findOne({username : data.username},function(err,doc){
-            console.log(err,doc)
+          //  console.log(err,doc)
             if (err){
                 return console.log(err)
             }
-            if(err === null && doc === null) {
-                res.send({status:0,msg:'用户名不存在！'})
+            if(doc === null) {
+                return res.send({status:0,msg:'用户名不存在！'})
             }
 
             if(doc) {
-                console.log(doc)
 
                 var md5 = require('crypto').createHash('md5')
                 data.password = md5.update(data.password).digest('hex')
+               // console.log(doc.password===data.password)
                 if(data.password === doc.password ) {
-                    //req.session.user = data.username
-                    res.send({status:1,msg:'登陆成功！'})
+                    req.session.user = data.username
+                    return res.send({status:1,msg:'登陆成功！'})
                 }
                 res.send({status:0,msg:'密码错误！'})
              }

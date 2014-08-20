@@ -4,6 +4,7 @@ var app = express()
 var routes = require('./routes')
 var mongoose = require('mongoose')
 
+
 mongoose.connect('mongodb://admin:admin@localhost:27017/admin')
 app.set('views','./views')
 app.set('view engine','jade')
@@ -23,9 +24,3 @@ routes(app)
 
 
 console.log('服务启动了,监听端口：'+port)
-
-
-
-
-
-
