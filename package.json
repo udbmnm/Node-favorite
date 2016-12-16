@@ -6,10 +6,10 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "3.4.8",
+    "express": "4.14.0",
     "jade": "*",
     "stylus": "*",
     "debug" : "*",
-    "mongoose":"3.8.13"
+    "mongoose":"4.7.2"
   }
 }
